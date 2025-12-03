@@ -253,4 +253,20 @@ public class GlobalExceptionHandler {
         error.put("error", "File size exceeds maximum upload limit");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
+    @ExceptionHandler(NotificationPreferenceNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleNotificationPreferenceNotFound(
+            NotificationPreferenceNotFoundException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(InvalidThresholdAmountException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidThresholdAmount(
+            InvalidThresholdAmountException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 }

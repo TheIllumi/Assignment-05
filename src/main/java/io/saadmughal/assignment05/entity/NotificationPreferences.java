@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -41,4 +42,9 @@ public class NotificationPreferences implements Serializable {
     @Column(name = "threshold_amount")
     private BigDecimal thresholdAmount;
 
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Date updatedAt;
 }

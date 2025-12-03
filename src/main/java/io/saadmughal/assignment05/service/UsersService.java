@@ -52,6 +52,9 @@ public class UsersService {
     private NotificationPreferencesRepository notificationPreferencesRepository;
 
     @Autowired
+    private NotificationPreferencesService notificationPreferencesService;
+
+    @Autowired
     private JwtUtil jwtUtil;
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -98,7 +101,7 @@ public class UsersService {
         createDefaultCategories(user);
 
         // 7. Create default notification preferences
-        createDefaultNotificationPreferences(user);
+        notificationPreferencesService.createDefaultPreferences(user.getId());
 
         // 8. Build and return response
         return UserRegistrationResponseDTO.builder()
@@ -208,24 +211,6 @@ public class UsersService {
                     .build();
 
             categoriesRepository.save(category);
-        }
-    }
-
-    /**
-     * Creates default notification preferences (EMAIL, PUSH, SMS - all disabled) for new user
-     */
-    private void createDefaultNotificationPreferences(Users user) {
-        String[] channels = {"EMAIL", "PUSH", "SMS"};
-
-        for (String channel : channels) {
-            NotificationPreferences preference = NotificationPreferences.builder()
-                    .userId(user.getId())
-                    .type("GENERAL")
-                    .channel(channel)
-                    .enabled(false)
-                    .build();
-
-            notificationPreferencesRepository.save(preference);
         }
     }
 

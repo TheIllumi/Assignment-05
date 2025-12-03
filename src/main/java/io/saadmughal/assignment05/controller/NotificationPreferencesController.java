@@ -1,48 +1,94 @@
 package io.saadmughal.assignment05.controller;
 
-import io.saadmughal.assignment05.dto.NotificationPreferencesDTO;
+import io.saadmughal.assignment05.dto.NotificationPreferenceCreateDTO;
+import io.saadmughal.assignment05.dto.NotificationPreferenceDTO;
+import io.saadmughal.assignment05.dto.NotificationPreferenceUpdateDTO;
+import io.saadmughal.assignment05.dto.NotificationPreferencesResponseDTO;
 import io.saadmughal.assignment05.service.NotificationPreferencesService;
-import io.saadmughal.assignment05.vo.NotificationPreferencesQueryVO;
-import io.saadmughal.assignment05.vo.NotificationPreferencesUpdateVO;
-import io.saadmughal.assignment05.vo.NotificationPreferencesVO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Validated
 @RestController
-@RequestMapping("/notificationPreferences")
+@RequestMapping("/notification-preferences")
 public class NotificationPreferencesController {
 
     @Autowired
     private NotificationPreferencesService notificationPreferencesService;
 
+    /**
+     * Create a new notification preference
+     * @param request Preference creation data
+     * @return Created preference
+     */
     @PostMapping
-    public String save(@Valid @RequestBody NotificationPreferencesVO vO) {
-        return notificationPreferencesService.save(vO).toString();
+    public ResponseEntity<NotificationPreferenceDTO> createPreference(
+            @Valid @RequestBody NotificationPreferenceCreateDTO request) {
+        NotificationPreferenceDTO preference = notificationPreferencesService.createPreference(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(preference);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@Valid @NotNull @PathVariable("id") Long id) {
-        notificationPreferencesService.delete(id);
-    }
-
-    @PutMapping("/{id}")
-    public void update(@Valid @NotNull @PathVariable("id") Long id,
-                       @Valid @RequestBody NotificationPreferencesUpdateVO vO) {
-        notificationPreferencesService.update(id, vO);
-    }
-
-    @GetMapping("/{id}")
-    public NotificationPreferencesDTO getById(@Valid @NotNull @PathVariable("id") Long id) {
-        return notificationPreferencesService.getById(id);
-    }
-
+    /**
+     * Get all notification preferences for a user
+     * @param userId User ID
+     * @return List of preferences with channel availability
+     */
     @GetMapping
-    public Page<NotificationPreferencesDTO> query(@Valid NotificationPreferencesQueryVO vO) {
-        return notificationPreferencesService.query(vO);
+    public ResponseEntity<NotificationPreferencesResponseDTO> getPreferencesByUser(
+            @RequestParam @NotNull Long userId) {
+        NotificationPreferencesResponseDTO response = notificationPreferencesService.getPreferencesByUser(userId);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Get single notification preference by ID
+     * @param id Preference ID
+     * @return Preference details
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<NotificationPreferenceDTO> getPreferenceById(
+            @PathVariable @NotNull Long id) {
+        NotificationPreferenceDTO preference = notificationPreferencesService.getPreferenceById(id);
+        return ResponseEntity.ok(preference);
+    }
+
+    /**
+     * Update notification preference
+     * @param id Preference ID
+     * @param request Update data
+     * @return Updated preference
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<NotificationPreferenceDTO> updatePreference(
+            @PathVariable @NotNull Long id,
+            @Valid @RequestBody NotificationPreferenceUpdateDTO request) {
+        NotificationPreferenceDTO preference = notificationPreferencesService.updatePreference(id, request);
+        return ResponseEntity.ok(preference);
+    }
+
+    /**
+     * Delete notification preference
+     * @param id Preference ID
+     * @return No content
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePreference(@PathVariable @NotNull Long id) {
+        notificationPreferencesService.deletePreference(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Reset preferences to defaults for a user
+     * @param userId User ID
+     * @return Default preferences
+     */
+    @PostMapping("/reset")
+    public ResponseEntity<NotificationPreferencesResponseDTO> resetToDefaults(
+            @RequestParam @NotNull Long userId) {
+        NotificationPreferencesResponseDTO response = notificationPreferencesService.resetToDefaults(userId);
+        return ResponseEntity.ok(response);
     }
 }
