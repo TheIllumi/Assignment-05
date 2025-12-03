@@ -8,13 +8,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Composite primary key for TransactionTags
+ * Composite key for TransactionTags entity
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransactionTagsId implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     private Long transactionId;
