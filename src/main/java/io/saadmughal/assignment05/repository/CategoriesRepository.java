@@ -1,9 +1,11 @@
 package io.saadmughal.assignment05.repository;
 
 import io.saadmughal.assignment05.entity.Categories;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CategoriesRepository extends JpaRepository<Categories, Long>, JpaSpecificationExecutor<Categories> {
@@ -14,4 +16,6 @@ public interface CategoriesRepository extends JpaRepository<Categories, Long>, J
      * @return Optional containing category if found
      */
     Optional<Categories> findById(Long id);
+
+    List<Categories> findByUserIdOrUserIdIsNull(@NotNull(message = "User ID is required") Long userId);
 }

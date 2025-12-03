@@ -37,6 +37,13 @@
             <version>6.2.1</version>
         </dependency>
 
+        <!-- Apache Commons CSV -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+
         <!-- JWT (JSON Web Token) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
