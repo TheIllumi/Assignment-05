@@ -161,4 +161,39 @@ public class GlobalExceptionHandler {
         error.put("error", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
+    @ExceptionHandler(RecurringRuleNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleRecurringRuleNotFound(RecurringRuleNotFoundException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(InvalidFrequencyException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidFrequency(InvalidFrequencyException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(InvalidIntervalException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidInterval(InvalidIntervalException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(InvalidDayOfMonthException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidDayOfMonth(InvalidDayOfMonthException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(InvalidDayOfWeekException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidDayOfWeek(InvalidDayOfWeekException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 }

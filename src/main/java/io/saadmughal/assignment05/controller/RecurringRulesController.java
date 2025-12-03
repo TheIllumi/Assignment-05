@@ -1,48 +1,137 @@
 package io.saadmughal.assignment05.controller;
 
-import io.saadmughal.assignment05.dto.RecurringRulesDTO;
+import io.saadmughal.assignment05.dto.RecurringRuleCreateRequestDTO;
+import io.saadmughal.assignment05.dto.RecurringRuleResponseDTO;
+import io.saadmughal.assignment05.dto.RecurringRuleUpdateRequestDTO;
 import io.saadmughal.assignment05.service.RecurringRulesService;
-import io.saadmughal.assignment05.vo.RecurringRulesQueryVO;
-import io.saadmughal.assignment05.vo.RecurringRulesUpdateVO;
-import io.saadmughal.assignment05.vo.RecurringRulesVO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Validated
+import java.util.List;
+
 @RestController
-@RequestMapping("/recurringRules")
+@RequestMapping("/recurring-rules")
 public class RecurringRulesController {
 
     @Autowired
     private RecurringRulesService recurringRulesService;
 
+    /**
+     * Create a new recurring rule
+     * @param request Recurring rule creation data
+     * @return Created recurring rule
+     */
     @PostMapping
-    public String save(@Valid @RequestBody RecurringRulesVO vO) {
-        return recurringRulesService.save(vO).toString();
+    public ResponseEntity<RecurringRuleResponseDTO> createRecurringRule(
+            @Valid @RequestBody RecurringRuleCreateRequestDTO request) {
+        RecurringRuleResponseDTO response = recurringRulesService.createRecurringRule(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@Valid @NotNull @PathVariable("id") Long id) {
-        recurringRulesService.delete(id);
-    }
-
-    @PutMapping("/{id}")
-    public void update(@Valid @NotNull @PathVariable("id") Long id,
-                       @Valid @RequestBody RecurringRulesUpdateVO vO) {
-        recurringRulesService.update(id, vO);
-    }
-
-    @GetMapping("/{id}")
-    public RecurringRulesDTO getById(@Valid @NotNull @PathVariable("id") Long id) {
-        return recurringRulesService.getById(id);
-    }
-
+    /**
+     * Get all recurring rules for a user with optional filters
+     * @param userId User ID (required)
+     * @param active Filter by active status (optional)
+     * @param type Filter by transaction type (optional: EXPENSE, INCOME, TRANSFER)
+     * @return List of recurring rules
+     */
     @GetMapping
-    public Page<RecurringRulesDTO> query(@Valid RecurringRulesQueryVO vO) {
-        return recurringRulesService.query(vO);
+    public ResponseEntity<List<RecurringRuleResponseDTO>> getRecurringRulesByUser(
+            @RequestParam @NotNull Long userId,
+            @RequestParam(required = false) Boolean active,
+            @RequestParam(required = false) String type) {
+        List<RecurringRuleResponseDTO> rules = recurringRulesService.getRecurringRulesByUser(userId, active, type);
+        return ResponseEntity.ok(rules);
+    }
+
+    /**
+     * Get single recurring rule by ID
+     * @param id Rule ID
+     * @return Recurring rule details
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<RecurringRuleResponseDTO> getRecurringRuleById(
+            @PathVariable @NotNull Long id) {
+        RecurringRuleResponseDTO rule = recurringRulesService.getRecurringRuleById(id);
+        return ResponseEntity.ok(rule);
+    }
+
+    /**
+     * Get all recurring rules for a specific account
+     * @param accountId Account ID
+     * @return List of recurring rules
+     */
+    @GetMapping("/account/{accountId}")
+    public ResponseEntity<List<RecurringRuleResponseDTO>> getRecurringRulesByAccount(
+            @PathVariable @NotNull Long accountId) {
+        List<RecurringRuleResponseDTO> rules = recurringRulesService.getRecurringRulesByAccount(accountId);
+        return ResponseEntity.ok(rules);
+    }
+
+    /**
+     * Update an existing recurring rule
+     * @param id Rule ID
+     * @param request Update data
+     * @return Updated recurring rule
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<RecurringRuleResponseDTO> updateRecurringRule(
+            @PathVariable @NotNull Long id,
+            @Valid @RequestBody RecurringRuleUpdateRequestDTO request) {
+        RecurringRuleResponseDTO response = recurringRulesService.updateRecurringRule(id, request);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Delete a recurring rule
+     * @param id Rule ID
+     * @return No content
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRecurringRule(@PathVariable @NotNull Long id) {
+        recurringRulesService.deleteRecurringRule(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Toggle active status of a recurring rule
+     * @param id Rule ID
+     * @param active New active status
+     * @return Updated recurring rule
+     */
+    @PatchMapping("/{id}/toggle")
+    public ResponseEntity<RecurringRuleResponseDTO> toggleRecurringRule(
+            @PathVariable @NotNull Long id,
+            @RequestParam @NotNull Boolean active) {
+        RecurringRuleResponseDTO response = recurringRulesService.toggleRecurringRule(id, active);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Activate a recurring rule
+     * @param id Rule ID
+     * @return Updated recurring rule
+     */
+    @PatchMapping("/{id}/activate")
+    public ResponseEntity<RecurringRuleResponseDTO> activateRecurringRule(
+            @PathVariable @NotNull Long id) {
+        RecurringRuleResponseDTO response = recurringRulesService.activateRecurringRule(id);
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * Deactivate a recurring rule
+     * @param id Rule ID
+     * @return Updated recurring rule
+     */
+    @PatchMapping("/{id}/deactivate")
+    public ResponseEntity<RecurringRuleResponseDTO> deactivateRecurringRule(
+            @PathVariable @NotNull Long id) {
+        RecurringRuleResponseDTO response = recurringRulesService.deactivateRecurringRule(id);
+        return ResponseEntity.ok(response);
     }
 }
