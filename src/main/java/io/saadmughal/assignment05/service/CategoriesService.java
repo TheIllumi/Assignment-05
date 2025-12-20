@@ -42,7 +42,17 @@ public class CategoriesService {
     }
 
     public Page<CategoriesDTO> query(CategoriesQueryVO vO) {
-        throw new UnsupportedOperationException();
+        org.springframework.data.jpa.domain.Specification<Categories> spec = (root, query, cb) -> {
+            java.util.List<jakarta.persistence.criteria.Predicate> predicates = new java.util.ArrayList<>();
+            if (vO.getUserId() != null) {
+                predicates.add(cb.equal(root.get("userId"), vO.getUserId()));
+            }
+            if (vO.getType() != null) {
+                predicates.add(cb.equal(root.get("type"), vO.getType()));
+            }
+            return cb.and(predicates.toArray(new jakarta.persistence.criteria.Predicate[0]));
+        };
+        return categoriesRepository.findAll(spec, org.springframework.data.domain.Pageable.unpaged()).map(this::toDTO);
     }
 
     private CategoriesDTO toDTO(Categories original) {

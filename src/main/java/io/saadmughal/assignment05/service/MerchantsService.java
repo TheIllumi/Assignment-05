@@ -42,7 +42,14 @@ public class MerchantsService {
     }
 
     public Page<MerchantsDTO> query(MerchantsQueryVO vO) {
-        throw new UnsupportedOperationException();
+        org.springframework.data.jpa.domain.Specification<Merchants> spec = (root, query, cb) -> {
+            java.util.List<jakarta.persistence.criteria.Predicate> predicates = new java.util.ArrayList<>();
+            if (vO.getUserId() != null) {
+                predicates.add(cb.equal(root.get("userId"), vO.getUserId()));
+            }
+            return cb.and(predicates.toArray(new jakarta.persistence.criteria.Predicate[0]));
+        };
+        return merchantsRepository.findAll(spec, org.springframework.data.domain.Pageable.unpaged()).map(this::toDTO);
     }
 
     private MerchantsDTO toDTO(Merchants original) {
