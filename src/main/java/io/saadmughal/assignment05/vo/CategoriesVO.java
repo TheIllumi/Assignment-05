@@ -10,7 +10,6 @@ import java.util.Date;
 public class CategoriesVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "id can not null")
     private Long id;
 
     private Long userId;
@@ -29,13 +28,10 @@ public class CategoriesVO implements Serializable {
 
     private Integer sortOrder;
 
-    @NotNull(message = "archived can not null")
     private Boolean archived;
 
-    @NotNull(message = "createdAt can not null")
     private Date createdAt;
 
-    @NotNull(message = "updatedAt can not null")
     private Date updatedAt;
 
 }

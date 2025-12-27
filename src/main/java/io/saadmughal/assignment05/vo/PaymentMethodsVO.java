@@ -10,7 +10,6 @@ import java.util.Date;
 public class PaymentMethodsVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "id can not null")
     private Long id;
 
     @NotNull(message = "userId can not null")
@@ -24,13 +23,10 @@ public class PaymentMethodsVO implements Serializable {
 
     private String last4;
 
-    @NotNull(message = "archived can not null")
     private Boolean archived;
 
-    @NotNull(message = "createdAt can not null")
     private Date createdAt;
 
-    @NotNull(message = "updatedAt can not null")
     private Date updatedAt;
 
 }

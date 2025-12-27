@@ -179,7 +179,7 @@ const Transactions = () => {
                                 >
                                     <MenuItem value=""><em>All Categories</em></MenuItem>
                                     {categories.map((cat) => (
-                                        <MenuItem key={cat.categoryId} value={cat.categoryId}>{cat.name}</MenuItem>
+                                        <MenuItem key={cat.id} value={cat.id}>{cat.name}</MenuItem>
                                     ))}
                                 </TextField>
                             </Grid>

@@ -13,6 +13,7 @@ import Transactions from './pages/Transactions';
 import Budgets from './pages/Budgets';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
+import ChartOfAccounts from './pages/ChartOfAccounts';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             
             <Route element={<ProtectedRoute />}>
                 <Route element={<Layout><Dashboard /></Layout>} path="/" />
+                <Route element={<Layout><ChartOfAccounts /></Layout>} path="/chart-of-accounts" />
                 <Route element={<Layout><Accounts /></Layout>} path="/accounts" />
                 <Route element={<Layout><Transactions /></Layout>} path="/transactions" />
                 <Route element={<Layout><Transactions /></Layout>} path="/transfers" />

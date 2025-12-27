@@ -10,7 +10,6 @@ import java.util.Date;
 public class MerchantsVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "id can not null")
     private Long id;
 
     @NotNull(message = "userId can not null")
@@ -27,10 +26,8 @@ public class MerchantsVO implements Serializable {
 
     private String website;
 
-    @NotNull(message = "createdAt can not null")
     private Date createdAt;
 
-    @NotNull(message = "updatedAt can not null")
     private Date updatedAt;
 
 }

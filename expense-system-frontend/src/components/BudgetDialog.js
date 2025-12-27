@@ -140,7 +140,7 @@ const BudgetDialog = ({ open, onClose, onSuccess }) => {
                                             rules={{ required: true }}
                                             render={({ field }) => (
                                                 <TextField {...field} select fullWidth size="small">
-                                                    {categories.map(c => <MenuItem key={c.categoryId} value={c.categoryId}>{c.name}</MenuItem>)}
+                                                    {categories.map(c => <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)}
                                                 </TextField>
                                             )}
                                         />

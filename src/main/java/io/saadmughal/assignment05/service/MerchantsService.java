@@ -22,6 +22,11 @@ public class MerchantsService {
     public Long save(MerchantsVO vO) {
         Merchants bean = new Merchants();
         BeanUtils.copyProperties(vO, bean);
+        
+        // Defaults
+        if (bean.getCreatedAt() == null) bean.setCreatedAt(new java.util.Date());
+        if (bean.getUpdatedAt() == null) bean.setUpdatedAt(new java.util.Date());
+
         bean = merchantsRepository.save(bean);
         return bean.getId();
     }

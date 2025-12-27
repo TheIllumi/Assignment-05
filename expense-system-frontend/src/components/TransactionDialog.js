@@ -179,7 +179,7 @@ const TransactionDialog = ({ open, onClose, onSuccess }) => {
                                 rules={{ required: 'Category is required' }}
                                 render={({ field, fieldState: { error } }) => (
                                     <TextField {...field} select label="Category" fullWidth margin="dense" error={!!error} helperText={error?.message}>
-                                        {categories.map(cat => <MenuItem key={cat.categoryId} value={cat.categoryId}>{cat.name}</MenuItem>)}
+                                        {categories.map(cat => <MenuItem key={cat.id} value={cat.id}>{cat.name}</MenuItem>)}
                                     </TextField>
                                 )}
                             />
@@ -224,7 +224,7 @@ const TransactionDialog = ({ open, onClose, onSuccess }) => {
                                 render={({ field }) => (
                                     <TextField {...field} select label="Merchant (Optional)" fullWidth margin="dense">
                                         <MenuItem value=""><em>None</em></MenuItem>
-                                        {merchants.map(m => <MenuItem key={m.merchantId} value={m.merchantId}>{m.name}</MenuItem>)}
+                                        {merchants.map(m => <MenuItem key={m.id} value={m.id}>{m.name}</MenuItem>)}
                                     </TextField>
                                 )}
                             />
@@ -234,7 +234,7 @@ const TransactionDialog = ({ open, onClose, onSuccess }) => {
                                 render={({ field }) => (
                                     <TextField {...field} select label="Payment Method (Optional)" fullWidth margin="dense">
                                         <MenuItem value=""><em>None</em></MenuItem>
-                                        {paymentMethods.map(pm => <MenuItem key={pm.paymentMethodId} value={pm.paymentMethodId}>{pm.name}</MenuItem>)}
+                                        {paymentMethods.map(pm => <MenuItem key={pm.id} value={pm.id}>{pm.name}</MenuItem>)}
                                     </TextField>
                                 )}
                             />

@@ -22,6 +22,12 @@ public class CategoriesService {
     public Long save(CategoriesVO vO) {
         Categories bean = new Categories();
         BeanUtils.copyProperties(vO, bean);
+        
+        // Defaults
+        if (bean.getArchived() == null) bean.setArchived(false);
+        if (bean.getCreatedAt() == null) bean.setCreatedAt(new java.util.Date());
+        if (bean.getUpdatedAt() == null) bean.setUpdatedAt(new java.util.Date());
+        
         bean = categoriesRepository.save(bean);
         return bean.getId();
     }
