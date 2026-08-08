@@ -1,0 +1,37 @@
+package io.github.sedmugen.expensetracker.vo;
+
+import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@Data
+public class CategoriesVO implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
+
+    private Long userId;
+
+    private Long parentCategoryId;
+
+    @NotNull(message = "name can not null")
+    private String name;
+
+    @NotNull(message = "type can not null")
+    private String type;
+
+    private String icon;
+
+    private String color;
+
+    private Integer sortOrder;
+
+    private Boolean archived;
+
+    private Date createdAt;
+
+    private Date updatedAt;
+
+}

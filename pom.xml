@@ -13,11 +13,11 @@
         <relativePath/> <!-- lookup parent from a repository -->
     </parent>
 
-    <groupId>io.saadmughal</groupId>
-    <artifactId>Assignment-05</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Assignment-05</name>
-    <description>Assignment-05</description>
+    <groupId>io.github.sedmugen</groupId>
+    <artifactId>expense-management-system</artifactId>
+    <version>1.0.0</version>
+    <name>expense-management-system</name>
+    <description>Full-stack Personal Expense & Management System</description>
 
     <properties>
         <java.version>17</java.version>

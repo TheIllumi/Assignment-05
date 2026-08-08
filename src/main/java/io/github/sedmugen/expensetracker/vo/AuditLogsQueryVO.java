@@ -1,0 +1,26 @@
+package io.github.sedmugen.expensetracker.vo;
+
+
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@Data
+public class AuditLogsQueryVO implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private Long id;
+
+    private Long userId;
+
+    private String entityType;
+
+    private Long entityId;
+
+    private String action;
+
+    private String details;
+
+    private Date timestamp;
+
+}

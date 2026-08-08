@@ -1,0 +1,11 @@
+package io.github.sedmugen.expensetracker.exception;
+
+/**
+ * Exception thrown when interval value is invalid
+ */
+public class InvalidIntervalException extends RuntimeException {
+
+    public InvalidIntervalException() {
+        super("Interval must be greater than 0");
+    }
+}
