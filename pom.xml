@@ -17,7 +17,7 @@
     <artifactId>expense-management-system</artifactId>
     <version>1.0.0</version>
     <name>expense-management-system</name>
-    <description>Full-stack Personal Expense & Management System</description>
+    <description>Full-stack Personal Expense &amp; Management System</description>
 
     <properties>
         <java.version>17</java.version>
@@ -83,7 +83,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <!-- Actuator (health, metrics) -->
