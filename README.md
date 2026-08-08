@@ -4,11 +4,19 @@
 
 ---
 
-## 📷 Demo & Preview
+## 📷 Visual Showcase & Interface Gallery
 
+### Financial Analytics Dashboard
 ![Dashboard Preview](assets/images/dashboard_preview.jpg)
 
+### Transaction Ledger & Double-Leg Transfers
 ![Transactions Preview](assets/images/transactions_preview.jpg)
+
+### Double-Entry Chart of Accounts & Net Worth
+![Chart of Accounts Preview](assets/images/chart_of_accounts_preview.jpg)
+
+### Financial Reports & Multi-Format Exports
+![Reports & Exports Preview](assets/images/reports_preview.jpg)
 
 ---
 
@@ -64,7 +72,7 @@ graph TD
     Repositories <--> DB[("MySQL 8 / H2 Database")]
 ```
 
-For detailed architectural specifications and design records, see [`docs/architecture.md`](docs/architecture.md) and [`docs/decisions.md`](docs/decisions.md).
+For detailed architectural specifications, system diagrams, and design records, see [`docs/architecture.md`](docs/architecture.md) and [`docs/decisions.md`](docs/decisions.md).
 
 ---
 
@@ -106,13 +114,16 @@ npm start
 
 ---
 
-## 📖 Usage
+## 📖 Usage Guides & Manuals
 
-1. **Log In**: Use demo credentials `guest@example.com` / `guest123` or register a new user account.
-2. **Accounts**: Set up initial balances for Bank Accounts, Cash, or Credit Cards under the Accounts view.
+1. **Quick Start**: Use demo credentials `guest@example.com` / `guest123` or register a new user account.
+2. **Account Setup**: Set up initial balances for Bank Accounts, Cash, or Credit Cards under the Accounts view.
 3. **Transactions**: Log income or expenses, attach receipt files, or execute transfers between accounts.
-4. **Budgets**: Set category limits and monitor budget spending progress indicators on the Dashboard.
-5. **Reports & Exports**: Filter transactions by date range and export to CSV or JSON formats.
+4. **Detailed Guides**:
+   - [`docs/setup.md`](docs/setup.md) — Comprehensive Setup & Environment Guide
+   - [`docs/usage.md`](docs/usage.md) — End-User Operations Manual
+   - [`docs/development.md`](docs/development.md) — Developer & Contributor Guide
+   - [`docs/api.md`](docs/api.md) — REST API Specification & Endpoint Catalog
 
 ---
 

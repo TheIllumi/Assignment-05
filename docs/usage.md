@@ -18,7 +18,19 @@ On initial startup, the backend automatically seeds a guest demo account:
 
 ---
 
-## 2. Managing Financial Accounts
+## 2. Financial Analytics Dashboard
+
+![Dashboard View](../assets/images/dashboard_preview.jpg)
+
+The Dashboard serves as the central command center for your personal finances:
+- **Overview Metric Cards**: Instantly view Total Balance, Monthly Income, Monthly Expenses, and Net Savings.
+- **Spending Breakdown**: Interactive pie chart displaying expense distributions across categories.
+- **Monthly Spending Trends**: Bar chart visualizing income vs. expense trends over time.
+- **Recent Transactions Table**: Rapid access to recent ledger entries.
+
+---
+
+## 3. Managing Financial Accounts
 
 Navigate to **Accounts** from the navigation sidebar:
 
@@ -28,7 +40,9 @@ Navigate to **Accounts** from the navigation sidebar:
 
 ---
 
-## 3. Recording Transactions
+## 4. Recording Transactions
+
+![Transaction Ledger](../assets/images/transactions_preview.jpg)
 
 Navigate to **Transactions** or click **New Transaction** in the toolbar:
 
@@ -47,7 +61,7 @@ Navigate to **Transactions** or click **New Transaction** in the toolbar:
 
 ---
 
-## 4. Budget Tracking
+## 5. Budget Tracking
 
 Navigate to **Budgets**:
 
@@ -58,7 +72,9 @@ Navigate to **Budgets**:
 
 ---
 
-## 5. Chart of Accounts & General Ledger
+## 6. Chart of Accounts & General Ledger
+
+![Chart of Accounts Tree](../assets/images/chart_of_accounts_preview.jpg)
 
 Navigate to **Chart of Accounts** or **General Ledger**:
 
@@ -71,7 +87,9 @@ Navigate to **Chart of Accounts** or **General Ledger**:
 
 ---
 
-## 6. Financial Reports & Exporting
+## 7. Financial Reports & Exporting
+
+![Reports & Export Interface](../assets/images/reports_preview.jpg)
 
 Navigate to **Reports**:
 
