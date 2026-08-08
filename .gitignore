@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Audit & Governance Metadata
+context.md
+CONTEXT.md
+PORTFOLIO-STANDARDS.md
+
