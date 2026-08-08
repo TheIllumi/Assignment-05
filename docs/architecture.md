@@ -13,6 +13,8 @@ The application is structured as a decoupled multi-tier system:
 - **Security Tier**: Spring Security 6 with stateless JWT Bearer token authentication and BCrypt password hashing.
 - **Persistence Tier**: Spring Data JPA / Hibernate ORM connected to MySQL 8.0 (production) or H2 (in-memory test).
 
+![System Architecture Overview](../assets/images/architecture_diagram.jpg)
+
 ---
 
 ## 2. High-Level Architecture Diagram
